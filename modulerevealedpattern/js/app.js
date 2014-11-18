@@ -5,7 +5,7 @@ var modulo = (function(){
 	    start = function() {
 				   	timer = window.setInterval(function() {
 				   		counter++;
-				   		window.document.getElementById('contenuto').innerHTML='<b>' + counter + '<b/>';
+				   		window.document.getElementById('contenuto').innerHTML='<b>' + counter + '</b>';
 				   	}, 1000);
 				   	alternaBottoni();
 
