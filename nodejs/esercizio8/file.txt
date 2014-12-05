@@ -1,0 +1,2 @@
+Questo file verrà stampato sulla console
+utilizzando stream e pipe
