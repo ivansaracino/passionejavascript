@@ -1,0 +1,2 @@
+Esempio di file di testo servito da un server http
+creato con node.js
