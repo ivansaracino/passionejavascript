@@ -1,9 +1,22 @@
 var express = require('express');
+var cookieParser = require('cookie-parser');
+var expressSession = require('express-session');
+
 var app = express(); 
 
 app.set('port', (process.env.PORT || 5000));
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');     
+app.set('view engine', 'jade');
+app.use(cookieParser());
+app.use(expressSession({
+	secret: 'stringaqualunque',
+	resave: false,
+	saveUninitialized: true    
+}));  
+app.use(function(req,res,next) {
+	res.locals.session = req.session;
+	next(); 
+}); 
 app.use(express.static(__dirname + '/public'));  
 
 app.get('/', function(req,res) {
@@ -11,6 +24,7 @@ app.get('/', function(req,res) {
 });    
 
 app.get('/benvenuto', function(req,res){
+	req.session.utente = req.query.nome;
 	res.render('benvenuto', {nomeCognome : req.query.nome});
 });      
  

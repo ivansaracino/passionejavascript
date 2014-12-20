@@ -18,6 +18,12 @@ html(lang='it')
 		<![endif]-->
 	body
 		div.page-header
+			if (session.utente)
+				| Benvenuto #{session.utente}
+			else
+				| Non hai ancora inserito un 
+				| nome per il saluto! Appena 
+				| lo farai verrà messo in sessione
 			block testata
 		div.container-fluid
 			div.row
