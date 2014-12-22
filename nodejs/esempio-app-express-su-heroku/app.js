@@ -29,13 +29,22 @@ app.get('/benvenuto', function(req,res){
 });      
  
 app.get('/pagina1', function(req,res) {
-	res.render('pagina1');
-});
+	res.render('pagina1', {libri: [{
+		titolo: 'Il signore degli anelli',
+		autore: 'Tolkien'
+	},{
+		titolo: 'Guerra e pace',
+		autore: 'Tolstoj'
+	}, {
+		titolo: 'Javascript the good parts',
+		autore: 'Crockford'
+	}]}); 
+});  
 
 app.get('/pagina2', function(req,res) {
-	res.render('pagina2'); 
+	res.render('pagina2');
 });        
- 
+  
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'));
 });                 	        
