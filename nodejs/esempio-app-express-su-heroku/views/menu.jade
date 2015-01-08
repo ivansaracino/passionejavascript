@@ -1,8 +1,7 @@
-ul(class='nav nav-pils')
-	li(role="presentation",class="active")
-		a(href="/") Home
-	li(role="presentation")
-		a(href="/pagina1") for each con jade
-	li(role="presentation")
-		a(href="/pagina2") Pagina 2
-
+if (!session.utente)
+	ul(class='nav nav-pils')
+		li(role="presentation")
+			a(href="/vai_login") Login
+		li(role="presentation")
+			a(href="/vai_registrazione") Registrati!
+		
