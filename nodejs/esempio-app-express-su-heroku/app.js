@@ -24,7 +24,10 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req,res) {
 	res.render('index');
-});  
+});
+
+var utenti = require('./routes/utenti');
+app.use('/utente', utenti);
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'));
