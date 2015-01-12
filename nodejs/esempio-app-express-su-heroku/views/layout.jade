@@ -20,7 +20,8 @@ html(lang='it')
 		div.page-header
 			p(class='text-info text-right')
 				if (session.utente)
-					| Benvenuto #{session.utente}
+					| Benvenuto #{session.utente.username} hai il profilo
+					| #{session.utente.profilo}
 				else
 					| Benvenuto utente ospite!	
 			block testata

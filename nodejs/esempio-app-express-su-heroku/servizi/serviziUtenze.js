@@ -1,0 +1,25 @@
+module.exports = (function(){
+	var utentiRegistrati = [
+		{
+			username : 'ivan',
+			password: 'saracino',
+			email: 'ivan.saracino@gmail.com',
+			profilo: 'admin' 
+		}
+	];
+	var login = function(username,password) {
+		var utentiLoggati = utentiRegistrati.filter(function(utente) {
+			return utente.username === username && 
+			       utente.password === password;
+		});
+		return utentiLoggati[0];
+	};
+	var registra = function(utente) {
+		utentiRegistrati.push(utente);
+		console.log(utentiRegistrati);
+	};
+	return {
+		login : login,
+		registra : registra
+	};
+})();

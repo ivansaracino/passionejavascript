@@ -8,4 +8,15 @@ block testata
 	h1.text-info Login
 
 block contenuti-principali
-	p.text-info Qui inseriremo il form di login
+	form(method='post', action='login')
+		div.form-group
+			label(for='username') Nome Utente
+			input(type='text', class='form-control' name='username', placeholder='Nome Utente')
+		div.form-group
+			label(for='password') Password
+			input(type='password', class='form-control' name='password', placeholder='Password')
+		button(type='submit' class='btn btn-default') Login
+	if (loginFallito)
+		p.text-danger #{loginFallito}
+	if (registrazioneOk)
+		p.text-success #{registrazioneOk}

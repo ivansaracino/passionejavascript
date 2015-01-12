@@ -1,6 +1,8 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
+var bodyParser = require('body-parser');
+var utenti = require('./routes/utenti');
 
 var app = express(); 
 
@@ -12,23 +14,23 @@ app.use(cookieParser());
 app.use(expressSession({
 	secret: 'stringaqualunque',
 	resave: false,
-	saveUninitialized: true    
+	saveUninitialized: true     
 }));
 
 app.use(function(req,res,next) {
 	res.locals.session = req.session;
-	next();     
-}); 
+	next();   
+});   
 
 app.use(express.static(__dirname + '/public'));  
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.get('/', function(req,res) {
-	res.render('index');
-});
-
-var utenti = require('./routes/utenti');
-app.use('/utente', utenti);
+	res.render('index');   
+});   
+ 
+app.use('/utente', utenti); 
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'));
-});                 	        
+});               	        
