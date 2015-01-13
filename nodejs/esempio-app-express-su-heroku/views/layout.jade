@@ -37,9 +37,10 @@ html(lang='it')
 					block contenuti-principali
 					block validazione
 						if (errors)
-							ul
-								each error in errors
-									li.text-danger #{error}
+							div.errors
+								ul
+									each error in errors
+										li.text-danger #{error}
 
 			div.row
 				div.col-md-12

@@ -20,13 +20,13 @@ app.use(expressSession({
 app.use(function(req,res,next) {
 	res.locals.session = req.session;
 	next();   
-});   
+});    
 
 app.use(express.static(__dirname + '/public'));  
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.get('/', function(req,res) {
-	res.render('index');   
+	res.render('index');    
 });   
  
 app.use('/utente', utenti); 
