@@ -18,7 +18,7 @@ html(lang='it')
 		<![endif]-->
 	body
 		div.page-header
-			p(class='text-info text-right')
+			p(class='text-info text-left')
 				if (session.utente)
 					| Benvenuto #{session.utente.username} hai il profilo
 					| #{session.utente.profilo}
@@ -36,8 +36,8 @@ html(lang='it')
 				div.col-md-10
 					block contenuti-principali
 					block validazione
-						if (errors)
-							div.errors
+						div.conmarginesuperiore
+							if (errors)
 								ul
 									each error in errors
 										li.text-danger #{error}

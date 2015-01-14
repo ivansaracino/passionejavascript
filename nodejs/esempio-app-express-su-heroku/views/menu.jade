@@ -8,14 +8,11 @@ else
 	ul(class='nav nav-pils')
 		li(role='presentation')
 			a(href='/utente/logout') Logout
-		if (session.utente.profilo === 'semplice')
 			li(role='presentation')
-				a(href='#') link semplice 1
+				a(href='/libri') Lista Libri
 			li(role='presentation')
-				a(href='#') link semplice 2
-		else
+				a(href='/libri/cerca') Cerca Libro
+		if (session.utente.profilo === 'admin')
 			li(role='presentation')
-				a(href='#') link admin 1
-			li(role="presentation")
-				a(href='#') link admin 2
+				a(href='/libri/nuovo') Nuovo Libro
 		

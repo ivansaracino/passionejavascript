@@ -5,9 +5,16 @@ module.exports = (function(){
 			password: 'saracino',
 			email: 'ivan.saracino@gmail.com',
 			profilo: 'admin' 
+		},
+		{
+			username : 'dd',
+			password: 'dd',
+			email: 'ivan.saracino@gmail.com',
+			profilo: 'semplice' 
 		}
 	];
 	var login = function(username,password) {
+		console.log(utentiRegistrati);
 		var utentiLoggati = utentiRegistrati.filter(function(utente) {
 			return utente.username === username && 
 			       utente.password === password;
