@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var serviziBiblioteca = require('../servizi/serviziUtenze');
+var serviziUtenze = require('../servizi/serviziUtenze');
 var form = require('express-form');
 var field = form.field;
 
@@ -20,13 +20,12 @@ router.route('/login')
 		response.render('login');
 	})
 	.post(validatoreLogin, function(request,response){
-		var utente = undefined;
+		var utente;
 		if (!request.form.isValid) {
-			console.log(request.form.errors);
-			response.render('login', {errors: request.form.errors});
+			response.render('login', {messages: request.form.errors});
 		}
 		else {
-			utente = serviziBiblioteca.login(
+			utente = serviziUtenze.login(
 				request.body.username,
 				request.body.password
 			);
@@ -52,13 +51,13 @@ router.route('/registrazione')
 	.post(validatoreRegistrazione, function(request,response) {
 		var utente = {};
 		if (!request.form.isValid) {
-			response.render('registrazione', {errors: request.form.errors})
+			response.render('registrazione', {messages: request.form.errors});
 		} else {
 			utente.username = request.body.username;
 			utente.password = request.body.password;
 			utente.email = request.body.email;
 			utente.profilo = 'semplice';
-			serviziBiblioteca.registra(utente);
+			serviziUtenze.registra(utente);
 			response.render('login', {
 				registrazioneOk: 'Ora puoi effettuare il login!'});
 		}

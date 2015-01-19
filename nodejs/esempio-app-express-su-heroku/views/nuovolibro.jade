@@ -1,0 +1,21 @@
+extends ./layout.jade
+
+
+block titolo
+	title Nuovo Libro
+
+block testata
+	h1.text-info Nuovo Libro
+
+block contenuti-principali
+	form(method='post', action='nuovo')
+		div.form-group
+			label(for='codiceisbn') Codice Isbn
+			input(type='text', class='form-control' name='codiceisbn', placeholder='Codice Isbn')
+		div.form-group
+			label(for='titolo') Titolo
+			input(type='text', class='form-control' name='titolo', placeholder='Titolo')
+		div.form-group
+			label(for='autore') Autore
+			input(type='text', class='form-control' name='autore', placeholder='Autore')
+		button(type='submit' class='btn btn-default') Salva!

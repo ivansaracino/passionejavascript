@@ -35,12 +35,12 @@ html(lang='it')
 						include ./menu.jade
 				div.col-md-10
 					block contenuti-principali
-					block validazione
-						div.conmarginesuperiore
-							if (errors)
+					block messages
+						if (messages)
+							div.conmarginesuperiore
 								ul
-									each error in errors
-										li.text-danger #{error}
+									each message in messages
+										li.text-danger #{message}
 
 			div.row
 				div.col-md-12

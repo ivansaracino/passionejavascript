@@ -21,7 +21,19 @@ module.exports = (function(){
 		return libri;
 	};
 
+	var elimina = function(codiceisbn) {
+		libri = libri.filter(function(libro) {
+			return libro.codiceisbn != codiceisbn;
+		});
+	};
+
+	var salvaLibro = function(libro) {
+		libri.push(libro);
+	};
+
 	return {
-		listaLibri : listaLibri
+		listaLibri : listaLibri,
+		elimina: elimina,
+		salvaLibro: salvaLibro
 	};
 })();

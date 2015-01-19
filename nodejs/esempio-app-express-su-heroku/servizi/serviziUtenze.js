@@ -14,7 +14,6 @@ module.exports = (function(){
 		}
 	];
 	var login = function(username,password) {
-		console.log(utentiRegistrati);
 		var utentiLoggati = utentiRegistrati.filter(function(utente) {
 			return utente.username === username && 
 			       utente.password === password;

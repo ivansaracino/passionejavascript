@@ -7,15 +7,25 @@ block testata
 	h1.text-info Lista Libri!
 
 block contenuti-principali
-	if (libri)
+	if (libri.length > 0)
 		table(class='table table-striped table-bordered')
 			thead
 			tr
 				th Codice
 				th Titolo
 				th Autore
+				if (session.utente.profilo === 'admin')
+					th Elimina
 			each libro in libri
 				tr
 					td #{libro.codiceisbn}
 					td #{libro.titolo}
 					td #{libro.autore}
+					if (session.utente.profilo === 'admin')
+						td
+							a(href='/libri/elimina/#{libro.codiceisbn}')
+								img(src='/imgs/delete.png')
+	else
+		div.conmarginesuperiore
+			ul
+				li.text-info Non ci sono libri in Biblioteca
