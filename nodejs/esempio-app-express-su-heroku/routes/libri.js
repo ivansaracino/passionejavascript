@@ -8,7 +8,11 @@ var validatoreNuovoLibro = form(
 		field('codiceisbn').trim().required('', 'Inserire il codice isbn!'),
 		field('titolo').trim().required('','Inserire Il titolo!'),
 		field('autore').trim().required('','Inserire autore!')
-	); 
+	);
+
+var validatoreRicercaLibro = form(
+		field('chiave').trim().required('', 'Inserire La chiave di ricerca!')
+	);
 
 router.route('/')
 	.get(function(request,response) {
@@ -40,6 +44,21 @@ router.route('/nuovo')
 			messages = ['Libro memorizzato con successo'];
 		}
 		response.render('nuovolibro', {messages: messages});
+	});
+
+router.route('/cerca')
+	.get(function(request, response) {
+		response.render('cercalibro');
+	})
+	.post(validatoreRicercaLibro, function(request, response) {
+		if (!request.form.isValid) {
+			messages = request.form.errors;
+			response.render('cercalibro', {messages: messages});
+		}
+		else {
+			var libri = serviziLibri.cercaLibri(request.body.chiave);
+			response.render('listalibri', {libri : libri});
+		}
 	});
 
 module.exports = router;

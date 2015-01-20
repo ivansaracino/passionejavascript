@@ -31,9 +31,16 @@ module.exports = (function(){
 		libri.push(libro);
 	};
 
+	var cercaLibri = function(chiave) {
+		return libri.filter(function(libro) {
+			return (libro.titolo.toLowerCase().search(chiave.toLowerCase()) != -1);
+		});
+	};
+
 	return {
 		listaLibri : listaLibri,
 		elimina: elimina,
-		salvaLibro: salvaLibro
+		salvaLibro: salvaLibro,
+		cercaLibri: cercaLibri
 	};
 })();
