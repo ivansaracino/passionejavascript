@@ -9,11 +9,11 @@ var validatoreLogin = form(
 		field('password').trim().required('','Inserire la password!')
 	);
 
-	var validatoreRegistrazione = form(
-			field('username').trim().required('', 'Inserire il nome utente!'),
-			field('password').trim().required('','Inserire la password!'),
-			field('email').trim().required('','Inserire la mail').isEmail('Inserire un indirizzo di mail valido!')
-		);
+var validatoreRegistrazione = form(
+		field('username').trim().required('', 'Inserire il nome utente!'),
+		field('password').trim().required('','Inserire la password!'),
+		field('email').trim().required('','Inserire la mail').isEmail('Inserire un indirizzo di mail valido!')
+	);
 
 router.route('/login')
 	.get(function(request,response) {
@@ -57,9 +57,10 @@ router.route('/registrazione')
 			utente.password = request.body.password;
 			utente.email = request.body.email;
 			utente.profilo = 'semplice';
+			utente.confermato = false;
 			serviziUtenze.registra(utente);
 			response.render('login', {
-				registrazioneOk: 'Ora puoi effettuare il login!'});
+				registrazioneOk: 'Confermare la registrazione tramite la mail di conferma'});
 		}
 		
 	});
@@ -69,6 +70,12 @@ router.route('/logout')
 		request.session.destroy(function() {
 			response.redirect('/');
 		});
+	});
+
+router.route('/conferma/:username')
+	.get(function(request,response){
+		serviziUtenze.confermaRegistrazione(request.params.username);
+		response.render('login', {registrazioneOk: 'Ora puoi effettuare il login'});
 	});
 
 module.exports = router;
